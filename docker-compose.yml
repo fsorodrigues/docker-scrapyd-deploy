@@ -1,0 +1,27 @@
+services:
+  scrapyd-deploy:
+    image: scrapyd
+    ports:
+      - 6800:6800
+    volumes:
+      - ../projects:/projects
+      - .:/scrapyd
+      - /srv/data/datasette:/mnt
+    environment:
+      DB_CONNECTION_DIR: /mnt
+    healthcheck:
+      test: ["CMD-SHELL", "curl http://localhost:6800/daemonstatus.json"]
+      interval: 10s
+      retries: 5
+      start_period: 30s
+      timeout: 10s
+
+  scrapyd-web-deploy:
+    image: scrapydweb
+    ports:
+      - 5000:5000
+    environment:
+      - SCRAPYD_SERVERS=scrapyd-deploy:6800
+    depends_on:
+      scrapyd-deploy:
+        condition: service_healthy
