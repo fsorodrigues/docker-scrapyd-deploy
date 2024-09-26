@@ -18,6 +18,8 @@ services:
 
   scrapyd-web-deploy:
     image: scrapydweb
+    volumes:
+      - ../projects:/projects
     ports:
       - 5000:5000
     environment:
