@@ -4,7 +4,7 @@ services:
     ports:
       - 6800:6800
     volumes:
-      - ../projects:/projects
+      - ./projects:/projects
       - .:/scrapyd
       - /srv/data/datasette:/mnt
     environment:
@@ -19,7 +19,7 @@ services:
   scrapyd-web-deploy:
     image: scrapydweb
     volumes:
-      - ../projects:/projects
+      - ./projects:/projects
     ports:
       - 5000:5000
     environment:
