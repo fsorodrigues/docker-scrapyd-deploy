@@ -20,11 +20,14 @@ services:
     image: scrapydweb
     volumes:
       - ./projects:/projects
+      - ./scrapyd:/scrapyd
     ports:
       - 5000:5000
     environment:
       - SCRAPYD_SERVERS=scrapyd-deploy:6800
       - SCRAPY_PROJECTS_DIR=/projects
+      - DATABASE_URL=sqlite:////scrapyd/database/db.sqlite3
+      - DATA_PATH=/scrapyd
     depends_on:
       scrapyd-deploy:
         condition: service_healthy
