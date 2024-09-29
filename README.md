@@ -23,10 +23,13 @@ It assumes the project will be organized with the following directory structure:
 
 ```
 <project-root>
-├── projects
-│  ├── spider-1
-│  └── spider-2
-├── scrapyd
+├── projects/
+│  ├── spider-1/
+│  └── spider-2/
+├── scrapyd/
+│  ├── logs/
+│  ├── database/
+│  ├── data/
 └── docker-compose.yml
 ```
 
