@@ -1,6 +1,7 @@
 services:
   scrapyd-deploy:
     image: scrapyd
+    restart: unless-stopped
     ports:
       - 6800:6800
     volumes:
@@ -18,11 +19,13 @@ services:
 
   scrapyd-web-deploy:
     image: scrapydweb
+    restart: unless-stopped
     volumes:
       - ./projects:/projects
       - ./scrapyd:/scrapyd
     ports:
       - 5000:5000
+    env_file: ".env"
     environment:
       - SCRAPYD_SERVERS=scrapyd-deploy:6800
       - SCRAPY_PROJECTS_DIR=/projects
