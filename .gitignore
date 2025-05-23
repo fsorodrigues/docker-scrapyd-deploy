@@ -1,3 +1,5 @@
 projects/
 scrapyd/
+config/
 .env
+*.env

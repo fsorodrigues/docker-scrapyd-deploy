@@ -8,6 +8,7 @@ services:
       - ./projects:/projects
       - ./scrapyd:/scrapyd
       - /srv/data/datasette:/mnt
+    env_file: "config/.daemon.env"
     environment:
       DB_CONNECTION_DIR: /mnt
     healthcheck:
@@ -25,7 +26,7 @@ services:
       - ./scrapyd:/scrapyd
     ports:
       - 5000:5000
-    env_file: ".env"
+    env_file: "config/.web.env"
     environment:
       - SCRAPYD_SERVERS=scrapyd-deploy:6800
       - SCRAPY_PROJECTS_DIR=/projects
